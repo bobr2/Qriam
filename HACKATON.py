@@ -27,7 +27,7 @@ print(arr_d)
 def for_work(arr):
     arr = arr[arr["status"] == "Создано"]
     digital = pd.to_numeric(arr["estimation"], errors="raise").fillna(0)
-    s_digit = sum([i for i in digital])
+    s_digit = sum([i/3600 for i in digital])
     return s_digit
 
 print(for_work(arr_d))
