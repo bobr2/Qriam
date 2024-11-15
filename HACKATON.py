@@ -14,6 +14,8 @@ with open(url_3, encoding="utf-8") as f: arr_d = pd.DataFrame([i for i in csv.re
 
 arr_s.columns = ("sprint_name", "sprint_status", "sprint_start", "sprint_end", "entity_ids")
 arr_h.columns = ("entity_id", "history_property_name", "history_date", "history_version", "history_change_type", "history_change")
+arr_d.columns = ("entity_id", "area", "type",	"status", "state", "priority","ticket_number", "name", "create_date", "created_by",	"update_date",	"updated_by",	"parent_ticket_id",	"assignee",	"owner", "due_date", "rank",	"estimation",	"spent",	"workgroup",	 "resolution")
+
 
 
 print(arr_s)
