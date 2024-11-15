@@ -5,9 +5,11 @@ url_1 = "Sprints.csv" # Ему соответствует arr_s
 url_2 = "History.csv" # Ему соответствует arr_h
 url_3 = "Data.csv" # Ему соответствует arr_d
 
-with open(url_1) as f: arr_s = pd.DataFrame([i for i in csv.reader(f, delimiter=";")][2:])
-with open(url_2, encoding="utf-8") as f: arr_h = pd.DataFrame([i for i in csv.reader(f, delimiter=";")][2:])
-with open(url_3, encoding="utf-8") as f: arr_d = pd.DataFrame([i for i in csv.reader(f, delimiter=";")][2:])
+def read_file(url):
+    with open(url, encoding="utf-8") as f:
+        return pd.DataFrame([i for i in csv.reader(f, delimiter=";")][2:])
+
+arr_s, arr_h, arr_d = read_file(url_1), read_file(url_2), read_file(url_3)
 
 arr_s.columns = ("sprint_name", "sprint_status", "sprint_start", "sprint_end", "entity_ids")
 arr_h.columns = ("entity_id", "history_property_name", "history_date", "history_version", "history_change_type", "history_change", "СТОЛБЕЦ")
@@ -21,6 +23,15 @@ arr_d["entity_id"] = pd.to_numeric(arr_d["entity_id"], errors='raise')
 print(arr_s)
 print(arr_h)
 print(arr_d)
+
+def for_work(arr):
+    arr = arr[arr["status"] == "Создано"]
+    digital = pd.to_numeric(arr["estimation"], errors="raise").fillna(0)
+    s_digit = sum([i for i in digital])
+    return s_digit
+
+print(for_work(arr_d))
+
 
 def in_work(): pass
 def made(): pass
