@@ -32,6 +32,16 @@ def for_work(arr):
 
 print(for_work(arr_d))
 
+def in_work(arr):
+    arr = arr[arr["status"] != "Закрыто"]
+    arr = arr[arr["status"] != "Выполнено"]
+
+    digital = pd.to_numeric(arr["estimation"], errors="raise").fillna(0)
+    s_digit = sum([i for i in digital])
+    return s_digit
+
+print(in_work(arr_d))
+
 
 def in_work(): pass
 def made(): pass
