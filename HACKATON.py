@@ -21,3 +21,11 @@ arr_d["entity_id"] = pd.to_numeric(arr_d["entity_id"], errors='raise')
 print(arr_s)
 print(arr_h)
 print(arr_d)
+
+def in_work(): pass
+def made(): pass
+def removed(): pass
+def backlog_check():pass
+def task_blocked(): pass
+def excluded(): pass
+def added(): pass
