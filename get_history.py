@@ -10,8 +10,11 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,): #Получает но
             "status_in_sprint" : "",
             "status" : "",
             "resolution" : "",
-            "type" : ""
+            "type" : "",
+            "sprint" : "",
+            "time_sprint" : ""
             }
+    
     start, end = get_time(sprint, arr_s)
 
     ind = arr_h["entity_id"] == entity_id
@@ -23,15 +26,19 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,): #Получает но
         if start <= time <= end:
 
             if row.values[1] == "Статус":
-
                 task["status_in_sprint"] =row.values[-3].split("->")[1][1:]
 
             elif row.values[1] == "Оценка" and row.values[-3] != "":
-
                 task["estimation"] = int(row.values[-3].replace("->", "|").split("|")[1][1:])
             
             elif row.values[1] == "Резолюция":
                 task["resolution"] = row.values[-3].replace("->", "|").split("|")[1][1:]
+            
+            elif row.values[1] == "Спринт" and row.values[-3] != "":
+                task["sprint"] = row.values[-3].replace("->", "|").split("|")[1][1:]
+                task["time_sprint"] = row.values[2]
+
+
 
 
             
