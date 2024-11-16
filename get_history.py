@@ -2,7 +2,7 @@ from Get_time import get_time
 import pandas as pd
 
 
-def get_history(entity_id, sprint, arr_s, arr_h, arr_d,):
+def get_history(entity_id, sprint, arr_s, arr_h, arr_d,): #Получает номер задачи и интересующий нас спринт + массивы
 
     task = {"description" : "",
             "estimation" : "",
@@ -27,7 +27,7 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,):
 
                 task["status_in_sprint"] =row.values[-3].split("->")[1][1:]
             elif row.values[1] == "Оценка":
-                task["estimation"] == row.values[-3]
+                task["estimation"] = row.values[-3]
             
 
             if row.values[1] == "Исполнитель":
