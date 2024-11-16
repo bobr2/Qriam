@@ -24,9 +24,10 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,):
         if start < time < end:
 
             if row.values[1] == "Статус":
-                task["status_in_sprint"] =row.values[-3].split("->")[1][1:]
-                
 
+                task["status_in_sprint"] =row.values[-3].split("->")[1][1:]
+            elif row.values[1] == "Оценка":
+                task["estimation"] == row.values[-3]
             
 
             if row.values[1] == "Исполнитель":
@@ -41,14 +42,19 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,):
 
     task["status"] = kk[3]
     task["description"] = kk[7]
-    if kk[-4] != "":
-        task["estimation"] = int(kk[-4])
+    if task["estimation"] == "":
+        if kk[-4] != "":
+            task["estimation"] = int(kk[-4])
+        else:
+            task["estimation"] = 0
+    
+    if task["status_in_sprint"] == "":
+        task["status_in_sprint"] = "Создано"
+    
     nazv = {"closed": "Закрыто", "InProgress":"В работе", "created":"Создано"}
 
     if task["status_in_sprint"] in nazv.keys():
         task["status_in_sprint"] = nazv[task["status_in_sprint"]]
     
-    if task["estimation"] == "":
-        task["estimation"] = 0
 
     return task
