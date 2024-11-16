@@ -28,7 +28,7 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,): #Получает но
                 task["status_in_sprint"] =row.values[-3].split("->")[1][1:]
             elif row.values[1] == "Оценка" and row.values[-3] != "":
 
-                task["estimation"] =row.values[-3].replace("->", "|").split("|")[1][1:]
+                task["estimation"] = int(row.values[-3].replace("->", "|").split("|")[1][1:])
 
             
 
