@@ -46,5 +46,6 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,):
 
     if task["status_in_sprint"] in nazv.keys():
         task["status_in_sprint"] = nazv[task["status_in_sprint"]]
-    
+    if task["estimation"] == "":
+        task["estimation"] = 0
     return task
