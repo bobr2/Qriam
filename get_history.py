@@ -26,7 +26,7 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,): #Получает но
         if time <= end:
             if row.values[1] == "Спринт" and row.values[-3] != "":
                 task["sprint"] = row.values[-3].replace("->", "|").split("|")[1][1:]
-                task["time_sprint"] = row.values[2]
+                task["time_sprint"] = time
         if start <= time <= end:
 
             if row.values[1] == "Статус":
