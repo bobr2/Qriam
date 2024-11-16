@@ -41,7 +41,7 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,):
 
     task["status"] = kk[3]
     task["description"] = kk[7]
-    task["estimation"] = kk[-4]
+    task["estimation"] = int(kk[-4])
     nazv = {"closed": "Закрыто", "InProgress":"В работе", "created":"Создано"}
 
     if task["status_in_sprint"] in nazv.keys():
