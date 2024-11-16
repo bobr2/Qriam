@@ -7,3 +7,6 @@ def get_time(sprint,url_s):
     end_time_str=url_s['sprint_end'].loc[sprint-1]
     end_time=datetime.strptime(end_time_str,'%Y-%m-%d %H:%M:%S.%f')
     return start_time, end_time
+
+# Принимает на вход номер спринта и таблицу со спринтами
+# Выводит дату и время начала и окончания спринта в формете datetime
