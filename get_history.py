@@ -12,7 +12,9 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,): #Получает но
             "resolution" : "",
             "type" : "",
             "sprint" : "",
-            "time_sprint" : ""
+            "time_sprint" : "",
+            "time_start" : "",
+            "time_stop" : ""
             }
     
     start, end = get_time(sprint, arr_s)
@@ -31,6 +33,8 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,): #Получает но
 
             if row.values[1] == "Статус":
                 task["status_in_sprint"] =row.values[-3].split("->")[1][1:]
+                if row.values[-3].split("->")[0][:-1] == "created":
+                    task["time_start"] = time
 
             elif row.values[1] == "Оценка" and row.values[-3] != "":
                 task["estimation"] = int(row.values[-3].replace("->", "|").split("|")[1][1:])
@@ -61,6 +65,8 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,): #Получает но
     task["status"] = kk[3]
     task["description"] = kk[7]
     task["type"] = kk[2]
+    
+    task["time_stop"] = pd.to_datetime(kk[8], format='%m/%d/%y %H:%M.fff').replace(microsecond=0)
 
     if task["resolution"] == "":
         task["resolution"] = kk[-1]
@@ -72,8 +78,8 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,): #Получает но
         else:
             task["estimation"] = 0
     
-    if task["status_in_sprint"] == "":
-        task["status_in_sprint"] = "Создано"
+    #if task["status_in_sprint"] == "":
+    #    task["status_in_sprint"] = "Создано"
     
     nazv = {"closed": "Закрыто", "InProgress":"В работе", "created":"Создано", "done": "Выполнено", "closed":"Закрыто"}
 
