@@ -1,6 +1,6 @@
 from Get_time import get_time
 import pandas as pd
-
+import time
 
 def get_history(entity_id, sprint, arr_s, arr_h, arr_d,): #Получает номер задачи и интересующий нас спринт + массивы
 
@@ -20,6 +20,7 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,): #Получает но
     start, end = get_time(sprint, arr_s)
 
     ind = arr_h["entity_id"] == entity_id
+
 
     for index, row in arr_h[ind].iterrows():
 
@@ -66,7 +67,7 @@ def get_history(entity_id, sprint, arr_s, arr_h, arr_d,): #Получает но
     task["description"] = kk[7]
     task["type"] = kk[2]
     
-    task["time_stop"] = pd.to_datetime(kk[8], format='%m/%d/%y %H:%M.fff').replace(microsecond=0)
+    task["time_stop"] = kk[8], format='%m/%d/%y %H:%M'
 
     if task["resolution"] == "":
         task["resolution"] = kk[-1]
